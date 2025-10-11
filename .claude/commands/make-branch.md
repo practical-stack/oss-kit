@@ -22,6 +22,7 @@ i{issue-index}-{type}/{action-description_with_underscores}
 - `doc` - Documentation changes
 - `config` - Configuration updates
 - `refactor` - Code refactoring
+- `format` - Code formatting changes (whitespace, indentation, semicolons, etc.)
 - `test` - Test additions or improvements
 - `perf` - Performance improvements
 
