@@ -1,5 +1,7 @@
 # oss-kit
 
+English | [한국어](README.ko.md)
+
 **oss-kit** is a [GitHub Template Repository](https://docs.github.com/en/repositories/creating-and-managing-repositories/creating-a-template-repository) designed to help you kickstart new open-source projects.  
 
 This template reduces the **boilerplate setup required at the beginning of a project** and provides essential configurations to quickly set up a well-structured open-source repository.  
