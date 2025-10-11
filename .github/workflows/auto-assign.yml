@@ -1,0 +1,40 @@
+# Automatically assigns issues and pull requests to their creator
+# This helps with ownership tracking and accountability
+name: Auto Assign
+
+on:
+  pull_request:
+    types: [opened, ready_for_review]
+  issues:
+    types: [opened]
+
+permissions:
+  contents: read
+  issues: write
+  pull-requests: write
+
+jobs:
+  auto-assign:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Auto assign to creator
+        # https://github.com/actions/github-script
+        uses: actions/github-script@v8
+        with:
+          script: |
+            const creator = context.payload.sender.login;
+            const number = context.payload.pull_request?.number || context.payload.issue?.number;
+            const itemType = context.payload.pull_request ? 'pull request' : 'issue';
+
+            try {
+              await github.rest.issues.addAssignees({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                issue_number: number,
+                assignees: [creator]
+              });
+
+              console.log(`Assigned ${itemType} #${number} to @${creator}`);
+            } catch (error) {
+              console.log(`Failed to assign ${itemType}: ${error.message}`);
+            }
