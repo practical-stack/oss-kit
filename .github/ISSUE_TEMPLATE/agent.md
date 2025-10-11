@@ -1,9 +1,9 @@
 ---
 name: agent
 about: Add or update agent rules, commands, or automation
-title: "[agent]: "
-labels: feat-agent
-assignees: p-iknow
+title: "agent: "
+labels: agent
+assignees: ""
 
 ---
 

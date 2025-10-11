@@ -18,10 +18,12 @@ i{issue-index}-{type}/{action-description_with_underscores}
 ## Supported Types
 
 - `feat` - New features
-- `fix` - Bug fixes  
-- `docs` - Documentation changes
+- `fix` - Bug fixes
+- `doc` - Documentation changes
 - `config` - Configuration updates
 - `refactor` - Code refactoring
+- `test` - Test additions or improvements
+- `perf` - Performance improvements
 
 ## Examples
 
@@ -37,9 +39,9 @@ i{issue-index}-{type}/{action-description_with_underscores}
 #23`
 - Output: `i23-fix/resolve-styling-issues-in-dialog`
 
-- Input: `/make-branch [docs]: add component usage examples
+- Input: `/make-branch [doc]: add component usage examples
 #42`
-- Output: `i42-docs/add-component-usage-examples`
+- Output: `i42-doc/add-component-usage-examples`
 
 ## Implementation
 

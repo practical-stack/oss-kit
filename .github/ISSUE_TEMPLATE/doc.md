@@ -1,9 +1,9 @@
 ---
 name: doc
 about: Add or update project documentation
-title: "[doc]:"
+title: "doc: "
 labels: doc
-assignees: p-iknow
+assignees: ""
 
 ---
 

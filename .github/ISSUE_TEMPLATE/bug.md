@@ -1,9 +1,9 @@
 ---
 name: bug
 about: Create a bug report to help us improve
-title: "[bug]: [Descrption]"
+title: "bug: "
 labels: bug
-assignees: p-iknow
+assignees: ""
 
 ---
 

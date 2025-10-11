@@ -29,11 +29,13 @@ Automatically generate draft pull requests with intelligent content analysis.
 
 Generate titles based on branch analysis using these prefixes:
 
-- **feat**: New features, updates, output-changing code, agent rules/commands, utils
-- **config**: prettier, eslint, ci/cd, dependency installs/bumps, docker, vscode settings  
-- **refactor**: lint fixes, prettier fixes, output-unchanged code improvements
-- **fix**: bug fixes, correcting mistakes
-- **test**: separate test PRs, storybook, .test file additions
+- **feat**: New features, updates, output-changing code
+- **fix**: Bug fixes, correcting mistakes
+- **doc**: Documentation changes
+- **config**: prettier, eslint, ci/cd, dependency installs/bumps, docker, vscode settings
+- **refactor**: Lint fixes, prettier fixes, output-unchanged code improvements
+- **test**: Test additions or improvements, storybook, .test file additions
+- **perf**: Performance improvements
 
 Note: Use `config` instead of `chore` (chore implies unimportance)
 

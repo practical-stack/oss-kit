@@ -1,0 +1,47 @@
+# Automatically labels issues and pull requests based on their title prefix
+# Supported prefixes: feat:, fix:, doc:, config:, refactor:, agent:, test:, bug:, perf:
+# Example: "feat: add new feature" will be labeled with "feat"
+name: Auto Label
+
+on:
+  pull_request:
+    types: [opened, edited, synchronize]
+  issues:
+    types: [opened, edited]
+
+permissions:
+  contents: read
+  issues: write
+  pull-requests: write
+
+jobs:
+  auto-label:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Auto label based on title
+        # https://github.com/actions/github-script
+        uses: actions/github-script@v8
+        with:
+          script: |
+            const title = context.payload.pull_request?.title || context.payload.issue?.title || '';
+            const number = context.payload.pull_request?.number || context.payload.issue?.number;
+            const issuePath = context.payload.pull_request ? 'pulls' : 'issues';
+
+            // Extract type from title (e.g., "feat:", "fix:", "doc:")
+            const typeMatch = title.match(/^(feat|fix|doc|config|refactor|agent|test|bug|perf):/i);
+
+            if (typeMatch) {
+              const label = typeMatch[1].toLowerCase();
+
+              // Add the label
+              await github.rest.issues.addLabels({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                issue_number: number,
+                labels: [label]
+              });
+
+              console.log(`Added label: ${label}`);
+            } else {
+              console.log('No matching type prefix found in title');
+            }
