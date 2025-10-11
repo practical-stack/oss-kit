@@ -1,5 +1,5 @@
 # Automatically labels issues and pull requests based on their title prefix
-# Supported prefixes: feat:, fix:, docs:, config:, refactor:, agent:, test:
+# Supported prefixes: feat:, fix:, doc:, config:, refactor:, agent:, test:, bug:, perf:
 # Example: "feat: add new feature" will be labeled with "feat"
 name: Auto Label
 
@@ -27,8 +27,8 @@ jobs:
             const number = context.payload.pull_request?.number || context.payload.issue?.number;
             const issuePath = context.payload.pull_request ? 'pulls' : 'issues';
 
-            // Extract type from title (e.g., "feat:", "fix:", "docs:")
-            const typeMatch = title.match(/^(feat|fix|docs|config|refactor|agent|test):/i);
+            // Extract type from title (e.g., "feat:", "fix:", "doc:")
+            const typeMatch = title.match(/^(feat|fix|doc|config|refactor|agent|test|bug|perf):/i);
 
             if (typeMatch) {
               const label = typeMatch[1].toLowerCase();
