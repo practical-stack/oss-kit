@@ -52,19 +52,33 @@ The following issue templates are available in `.github/ISSUE_TEMPLATE/`:
 
 4. **Set issue type as "Task"**:
    - After issue creation, set the GitHub issue type to "Task"
-   - Use GitHub API via gh CLI: `gh api repos/{owner}/{repo}/issues/{issue-number} -X PATCH -f issue_type='task'`
+   - Use GitHub API via gh CLI: `gh api repos/{owner}/{repo}/issues/{issue-number} -X PATCH -f type='Task'`
    - This categorizes the issue as a "Task" type in GitHub's issue tracking system
-   - Note: Issue types are an organization-level feature and may not be available in all repositories
+   - Note: The field name is `type` (not `issue_type`) and the value should be capitalized (e.g., 'Task', 'Bug', 'Feature')
+   - Issue types are an organization-level feature and may not be available in all repositories
 
 5. **Add to GitHub Project**:
    - After issue creation, add the issue to the repository's linked GitHub Project
-   - First, get the project linked to the repository:
-     * Use: `gh project list --owner {owner}` to find projects
-     * Or query linked projects: `gh api repos/{owner}/{repo}/projects`
-   - Then add the issue to the project:
+   - Get the project linked to the repository using GraphQL (most efficient):
+     ```bash
+     gh api graphql -f query='
+     {
+       repository(owner: "{owner}", name: "{repo}") {
+         projectsV2(first: 1) {
+           nodes {
+             id
+             number
+             title
+           }
+         }
+       }
+     }'
+     ```
+   - Extract the project number from the response
+   - Add the issue to the project:
      * Use: `gh project item-add {project-number} --owner {owner} --url {issue-url}`
-     * Or use GraphQL API for more control
    - If no project is linked or command fails, show informative message but don't fail issue creation
+   - Note: This approach is more efficient than listing all organization projects as it queries only repository-linked projects
 
 ## Examples
 
@@ -88,6 +102,7 @@ Prompts for template selection and title
 - All issues created via this command are set to "Task" type
 - Issues are automatically added to the repository's linked GitHub Project
 - GitHub Project integration:
+  * Uses GraphQL to efficiently query only repository-linked projects
   * Supports both organization and user projects
   * Uses `gh project item-add` to add issues to projects
   * Gracefully handles cases where no project is linked
