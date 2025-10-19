@@ -26,6 +26,7 @@ Analyze git changes (staged and unstaged) and create well-structured commits.
      * `doc`: Documentation changes
      * `config`: prettier, eslint, ci/cd, dependency installs/bumps, docker, vscode settings
      * `refactor`: Lint fixes, prettier fixes, output-unchanged code improvements
+     * `agent`: Add or update agent rules, commands, or automation
      * `format`: Code formatting changes (whitespace, indentation, semicolons, etc.)
      * `test`: Test additions or improvements, storybook, .test file additions
      * `perf`: Performance improvements

@@ -34,6 +34,7 @@ Generate titles based on branch analysis using these prefixes:
 - **doc**: Documentation changes
 - **config**: prettier, eslint, ci/cd, dependency installs/bumps, docker, vscode settings
 - **refactor**: Lint fixes, prettier fixes, output-unchanged code improvements
+- **agent**: Add or update agent rules, commands, or automation
 - **test**: Test additions or improvements, storybook, .test file additions
 - **perf**: Performance improvements
 
