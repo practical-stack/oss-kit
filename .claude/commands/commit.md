@@ -4,7 +4,7 @@ allowed-tools:
   - Bash
 ---
 
-# Smart Commit Command
+# Commit Command
 
 Analyze git changes (staged and unstaged) and create well-structured commits.
 
