@@ -7,16 +7,16 @@ assignees: ""
 
 ---
 
+## Context
+
+
 ## Requirement
 
-## Implementation plan(optional)
 
-**Dependencies (if applicable):**
+## Solution
 
 
-## Should be tested
+## Test Plan
 
-- [ ] Configuration tested locally
-- [ ] CI/CD pipeline verified (if applicable)
 
 ## Reference

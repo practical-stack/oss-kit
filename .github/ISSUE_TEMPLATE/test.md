@@ -7,27 +7,20 @@ assignees: ""
 
 ---
 
+## Context
+<!-- Why are these tests needed? What's currently untested? -->
+
+
 ## Requirement
+<!-- What needs to be tested? -->
 
-**What tests need to be added/improved:**
 
-## Implementation Plan (optional)
+## Test Scope
+<!-- Test types (Unit/Integration/E2E/Performance), scope, coverage goals -->
 
-**Test type:**
-- [ ] Unit tests
-- [ ] Integration tests
-- [ ] E2E tests
-- [ ] Performance tests
 
-**Test scope:**
+## Verification
+<!-- How to verify tests are working, coverage metrics -->
 
-**Files to be modified:**
 
-## Should be tested
-
-- [ ] Tests written and passing
-- [ ] Coverage improved (if applicable)
-- [ ] Edge cases covered
-- [ ] Test documentation added
-
-## Reference (optional)
+## Reference

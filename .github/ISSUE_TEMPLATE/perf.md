@@ -7,29 +7,20 @@ assignees: ""
 
 ---
 
+## Context
+<!-- Current performance issue and why it matters -->
+
+
 ## Requirement
+<!-- Target performance goals, metrics -->
 
-**What needs performance improvement:**
 
-**Current performance issue:**
+## Solution
+<!-- Optimization strategy and approach -->
 
-**Target performance goal:**
 
-## Implementation Plan (optional)
+## Verification
+<!-- Benchmarking method, performance testing, regression checks -->
 
-**Approach:**
 
-**Optimization strategy:**
-
-**Files to be modified:**
-
-**Breaking changes (if any):**
-
-## Should be tested
-
-- [ ] Performance benchmarks run
-- [ ] Improvement verified and measured
-- [ ] No regression in other areas
-- [ ] Documentation updated with performance notes
-
-## Reference (optional)
+## Reference

@@ -7,27 +7,20 @@ assignees: ""
 
 ---
 
+## Context
+<!-- Why is refactoring needed? Code quality issues, maintainability concerns -->
+
+
 ## Requirement
+<!-- What needs to be refactored and scope -->
 
-**What needs to be refactored:**
 
-**Why this refactoring is needed:**
+## Solution
+<!-- Refactoring approach, breaking changes if any -->
 
-## Implementation Plan (optional)
 
-**Scope:**
+## Verification
+<!-- Ensuring no functional changes, all tests passing, quality metrics -->
 
-**Approach:**
 
-**Files to be modified:**
-
-**Breaking changes (if any):**
-
-## Should be tested
-
-- [ ] Refactored code tested locally
-- [ ] No functional changes verified
-- [ ] All existing tests still passing
-- [ ] Code quality metrics improved (if applicable)
-
-## Reference (optional)
+## Reference
