@@ -5,14 +5,14 @@ allowed-tools:
   - Bash(git:*)
 ---
 
-# make-pr
+# pr
 
 Automatically generate draft pull requests with intelligent content analysis.
 
 ## Usage
 
 ```
-/make-pr
+/pr
 ```
 
 ## Purpose
@@ -104,10 +104,10 @@ Analyze `git diff` between current HEAD and base branch:
 
 ```bash
 # User runs command
-/make-pr
+/pr
 
 # System analyzes branch, commits, and code
 # Shows generated PR content for review
-# User approves/modifies content  
+# User approves/modifies content
 # Creates draft PR and opens in browser
 ```

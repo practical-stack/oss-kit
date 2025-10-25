@@ -5,14 +5,14 @@ allowed-tools:
   - Bash(git checkout:*)
 ---
 
-# make-branch
+# branch
 
 Generate consistent branch names from GitHub issue information.
 
 ## Usage
 
 ```
-/make-branch [<type>]: <description>
+/branch [<type>]: <description>
 #<issue-index>
 ```
 
@@ -40,29 +40,29 @@ The description is intelligently shortened to keep the total branch name under 5
 
 ### Basic Examples
 
-- Input: `/make-branch [feat]: implement Button component
+- Input: `/branch [feat]: implement Button component
 #15`
 - Output: `i15-feat/implement-button-component`
 
-- Input: `/make-branch [fix]: resolve styling issues in Dialog
+- Input: `/branch [fix]: resolve styling issues in Dialog
 #23`
 - Output: `i23-fix/resolve-styling-issues`
 
-- Input: `/make-branch [doc]: add component usage examples
+- Input: `/branch [doc]: add component usage examples
 #42`
 - Output: `i42-doc/add-component-usage-examples`
 
 ### Shortening Examples
 
-- Input: `/make-branch [config]: issue template, pr template, claude commend
+- Input: `/branch [config]: issue template, pr template, claude commend
 #5`
 - Output: `i5-config/issue-pr-template`
 
-- Input: `/make-branch [agent]: rename custom commands to shorter aliases for easier invocation
+- Input: `/branch [agent]: rename custom commands to shorter aliases for easier invocation
 #21`
 - Output: `i21-agent/rename-commands-to-aliases`
 
-- Input: `/make-branch [agent]: update make-task-issue to use prompt-based input instead of editor
+- Input: `/branch [agent]: update issue-task to use prompt-based input instead of editor
 #19`
 - Output: `i19-agent/prompt-based-input`
 

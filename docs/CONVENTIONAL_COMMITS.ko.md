@@ -449,7 +449,7 @@ Implementation:
 
 다음 커스텀 명령어들이 자동으로 이 컨벤션을 강제합니다:
 
-### `/make-commit`
+### `/commit`
 
 **목적**: git 변경 사항을 분석하고 잘 구조화된 커밋 생성
 
@@ -458,9 +458,9 @@ Implementation:
 - "Requirement"와 "Implementation" 섹션이 있는 커밋 메시지 생성
 - 논리적 커밋을 보장하기 위해 파일을 의도별로 그룹화
 
-**참고**: [.claude/commands/make-commit.md](.claude/commands/make-commit.md)
+**참고**: [.claude/commands/commit.md](.claude/commands/commit.md)
 
-### `/make-branch`
+### `/branch`
 
 **목적**: GitHub 이슈 정보에서 일관된 브랜치 이름 생성
 
@@ -469,9 +469,9 @@ Implementation:
 - 형식으로 브랜치 이름 생성: `i{issue-number}-{type}/{description}`
 - 브랜치 이름이 최종 커밋과 일치하도록 보장
 
-**참고**: [.claude/commands/make-branch.md](.claude/commands/make-branch.md)
+**참고**: [.claude/commands/branch.md](.claude/commands/branch.md)
 
-### `/make-pr`
+### `/pr`
 
 **목적**: draft pull request 자동 생성
 
@@ -480,7 +480,7 @@ Implementation:
 - 올바른 타입 접두사로 PR 제목 생성
 - 커밋 분석을 기반으로 구조화된 PR 설명 생성
 
-**참고**: [.claude/commands/make-pr.md](.claude/commands/make-pr.md)
+**참고**: [.claude/commands/pr.md](.claude/commands/pr.md)
 
 ---
 
