@@ -6,7 +6,6 @@ allowed-tools:
   - Read
   - Glob
   - Grep
-  - Write
 ---
 
 # Make Task Issue
@@ -46,9 +45,9 @@ The following issue templates are available in `.github/ISSUE_TEMPLATE/`:
 - If `$1` (first argument) is provided and matches a template type, use it
 - Otherwise, ask the user to select from available templates
 
-### 2. Collect User Input (Editor-based)
+### 2. Collect User Input (Prompt-based)
 
-Create a temporary markdown file with a template structure **tailored to the issue type** and open it in the user's editor.
+Collect user input through interactive prompts with a structure **tailored to the issue type**.
 
 **Template sections by type:**
 
@@ -63,66 +62,65 @@ Create a temporary markdown file with a template structure **tailored to the iss
 
 **All types share:** Context (REQUIRED), Requirement (REQUIRED), Reference (auto-generated)
 
-**Example template for `feat`:**
-```markdown
-# Issue Information
+**Prompt sequence:**
 
-## Context (REQUIRED)
-<!-- Describe the background: Why is this needed? What is the current situation? -->
+#### Prompt 1: Context (REQUIRED for all types)
+**Prompt text varies by type:**
 
-## Requirement (REQUIRED)
-<!-- Describe what needs to be done and the expected outcome -->
+- **feat, config, agent, perf, refactor, fix**: "Describe the background: Why is this needed? What is the current situation?"
+- **doc**: "Why is this documentation needed? What's missing or unclear?"
+- **test**: "Why are these tests needed? What's currently untested?"
 
-## Solution (optional)
-<!-- If you have ideas about how to solve this, describe the approach, architecture, or design decisions -->
+**Validation:**
+- Must be non-empty and not just whitespace
+- If validation fails, show: "Context is required and cannot be empty. Please provide input:"
+- Re-prompt until valid input is provided
 
-## Test Plan (optional)
-<!-- How should this be tested or validated? What are the success criteria? -->
-```
+#### Prompt 2: Requirement (REQUIRED for all types)
+**Prompt text varies by type:**
 
-**Example template for `doc`:**
-```markdown
-# Issue Information
+- **feat, config, agent, perf, refactor**: "Describe what needs to be done and the expected outcome:"
+- **doc**: "What documentation needs to be created/updated?"
+- **test**: "What needs to be tested?"
+- **fix**: "What needs to be fixed?"
 
-## Context (REQUIRED)
-<!-- Why is this documentation needed? What's missing or unclear? -->
+**Validation:**
+- Must be non-empty and not just whitespace
+- If validation fails, show: "Requirement is required and cannot be empty. Please provide input:"
+- Re-prompt until valid input is provided
 
-## Requirement (REQUIRED)
-<!-- What documentation needs to be created/updated? -->
+#### Prompt 3: Type-specific optional section
+**Prompt text varies by type:**
 
-## Content Outline (optional)
-<!-- Document structure, sections, topics to cover -->
+- **feat, config, agent**: "If you have ideas about how to solve this, describe the approach: (Enter to skip)"
+- **doc**: "Describe the document structure, sections, topics to cover: (Enter to skip)"
+- **test**: "Describe test types (Unit/Integration/E2E/Performance), scope, coverage goals: (Enter to skip)"
+- **perf, refactor**: "If you have ideas about how to solve this, describe the approach: (Enter to skip)"
+- **fix**: "If you know the root cause and fix approach, describe it: (Enter to skip)"
 
-## Verification (optional)
-<!-- How to verify documentation accuracy, examples tested, consistency checks -->
-```
+**Handling:**
+- Optional - if user presses Enter without text, store as empty
+- No validation required
 
-**Example template for `test`:**
-```markdown
-# Issue Information
+#### Prompt 4: Type-specific optional section
+**Prompt text varies by type:**
 
-## Context (REQUIRED)
-<!-- Why are these tests needed? What's currently untested? -->
+- **feat, config, agent**: "How should this be tested or validated? (Enter to skip)"
+- **doc**: "How to verify documentation accuracy? Examples tested? Consistency checks? (Enter to skip)"
+- **test**: "How to verify tests are working? Coverage metrics? (Enter to skip)"
+- **perf, refactor**: "How should this be verified? (Enter to skip)"
+- **fix**: "How should this be tested or validated? (Enter to skip)"
 
-## Requirement (REQUIRED)
-<!-- What needs to be tested? -->
-
-## Test Scope (optional)
-<!-- Test types (Unit/Integration/E2E/Performance), scope, coverage goals -->
-
-## Verification (optional)
-<!-- How to verify tests are working, coverage metrics -->
-```
+**Handling:**
+- Optional - if user presses Enter without text, store as empty
+- No validation required
 
 **Implementation steps:**
-- Use `Write` tool to create a temporary file (e.g., `/tmp/issue-input-{timestamp}.md`)
-- **Select the appropriate template based on the issue type** (see table above)
-- Use `Bash` with `${EDITOR:-vi}` to open the file for editing
-- After user saves and closes, read the file content
-- Parse the sections from the markdown (section names vary by type)
-- **Validate required sections**: Check that Context and Requirement are filled (not empty or just whitespace)
-- If validation fails, inform the user which sections are missing and re-open the editor
-- Repeat until all required sections are filled
+- Present prompts sequentially based on the issue type (see table above)
+- For each prompt, wait for user input
+- For required prompts (Context, Requirement): validate non-empty, re-prompt if validation fails
+- For optional prompts: allow Enter to skip, store as empty if skipped
+- Store all responses for later use in issue body generation
 
 ### 3. AI Context Gathering and Enhancement
 
@@ -304,7 +302,7 @@ Add the issue to the repository's linked GitHub Project:
 
 This will:
 1. Use the "feat" template type
-2. Open editor for you to fill in Context, Requirement, Solution, etc.
+2. Present interactive prompts for Context, Requirement, Solution, Test Plan
 3. Gather additional context from codebase
 4. Present AI enhancements for your approval
 5. Auto-generate issue title based on your requirement
@@ -322,29 +320,24 @@ This will:
 
 ### Example User Input
 
-When the editor opens, you might fill it in like this:
+When you run the command, you'll see prompts like this:
 
-```markdown
-## Context (REQUIRED)
-Our application currently lacks support for dark mode, which many users have requested. Modern applications are expected to support user preferences for light/dark themes, and our competitors already offer this feature.
+```
+Q: Describe the background: Why is this needed? What is the current situation?
+A: Our application currently lacks support for dark mode, which many users have requested. Modern applications are expected to support user preferences for light/dark themes, and our competitors already offer this feature.
 
-## Requirement (REQUIRED)
-Implement a dark mode theme that users can toggle. The theme preference should:
+Q: Describe what needs to be done and the expected outcome:
+A: Implement a dark mode theme that users can toggle. The theme preference should:
 - Be persistent across sessions
 - Apply to all pages and components
 - Follow our existing design system color variables
 - Default to system preference on first visit
 
-## Solution (optional)
-Use CSS variables for theming with a context provider to manage theme state. Store preference in localStorage.
+Q: If you have ideas about how to solve this, describe the approach: (Enter to skip)
+A: Use CSS variables for theming with a context provider to manage theme state. Store preference in localStorage.
 
-## Constraints (optional)
-- Must maintain WCAG AA contrast ratios in both themes
-- Should not require refactoring existing component styles (use CSS variables)
-- Must work with our existing Tailwind configuration
-
-## Test Plan (optional)
-- Test theme toggle functionality
+Q: How should this be tested or validated? (Enter to skip)
+A: - Test theme toggle functionality
 - Test persistence across page reloads
 - Test system preference detection
 - Verify contrast ratios meet accessibility standards
@@ -356,7 +349,7 @@ The AI might then find your design system config, suggest how to integrate with 
 ## Implementation Notes
 
 **Workflow characteristics:**
-- This command now uses an **editor-based input** approach instead of templates
+- This command uses a **prompt-based input** approach with interactive questions
 - The AI actively gathers context from your codebase to enhance the issue
 - Issue titles are auto-generated for consistency
 - **Type-specific sections**: Each issue type has sections optimized for its purpose
@@ -386,9 +379,8 @@ The AI might then find your design system config, suggest how to integrate with 
 ## Error Handling
 
 - If template type is invalid, show available templates and ask again
-- If user input is missing required sections (Context, Requirement), re-open editor with a message
+- If user input is missing required sections (Context, Requirement), re-prompt for that specific section with validation message
 - If `gh` CLI is not available, guide user to install it
-- If editor cannot be opened, fall back to multi-line prompts
 - If issue type setting fails (e.g., feature not available), show warning but continue
 - If no GitHub Project is linked to repository, show informative message
 - If project assignment fails, show warning but don't fail issue creation
