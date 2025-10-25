@@ -1,3 +1,10 @@
+---
+description: "Generate consistent branch names from GitHub issue information"
+argument-hint: "[<type>]: <description>\n#<issue-index>"
+allowed-tools:
+  - Bash(git checkout:*)
+---
+
 # make-branch
 
 Generate consistent branch names from GitHub issue information.
