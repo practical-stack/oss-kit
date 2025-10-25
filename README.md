@@ -43,7 +43,7 @@ This process is repetitive, time-consuming, and often inconsistent across projec
 - **Modern tooling**: Continuously updated with the latest GitHub features and tools.  
 - **Essential assets included**: Provides Issue Templates, PR Templates, Code of Conduct, Contribution Guide, and branch rules.  
 - **GitHub Projects integration**: Designed to work with GitHub Projects workflows.  
-- **Custom commit convention**: Uses a modified version of Conventional Commits tailored for this template.  
+- **Custom commit convention**: Uses a modified version of Conventional Commits tailored for this template. See [Conventional Commits Guide](docs/CONVENTIONAL_COMMITS.md) for details.  
 
 ---
 
@@ -57,6 +57,7 @@ This template includes the essential documents and configurations required for r
 - **LICENSE**: License information  
 - **agents.md**: Defines project roles and responsibilities  
 - **docs/**
+  - **CONVENTIONAL_COMMITS.md**: Comprehensive guide for commit conventions
   - **project-board.md**: Guide for GitHub Projects workflow  
 - **.github/**
   - **ISSUE_TEMPLATE/**: GitHub Issue templates
