@@ -649,5 +649,5 @@ Generated file: `.claude/commands/test-api.md`
 ## Reference
 
 - Official guide: https://docs.claude.com/en/docs/claude-code/slash-commands
-- Existing commands: [make-branch.md](/.claude/commands/make-branch.md), [make-commit.md](/.claude/commands/make-commit.md), [make-pr.md](/.claude/commands/make-pr.md), [make-task-issue.md](/.claude/commands/make-task-issue.md), [plan-issue.md](/.claude/commands/plan-issue.md)
+- Existing commands: [branch.md](/.claude/commands/branch.md), [commit.md](/.claude/commands/commit.md), [pr.md](/.claude/commands/pr.md), [issue-task.md](/.claude/commands/issue-task.md), [plan.md](/.claude/commands/plan.md)
 - Frontmatter fields: description (required), argument-hint, allowed-tools, model, disable-model-invocation
