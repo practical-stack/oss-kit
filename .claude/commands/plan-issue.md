@@ -10,7 +10,9 @@ allowed-tools:
 
 # Plan Issue
 
-Fetch a GitHub issue and create an interactive, detailed implementation plan with clear rationale for each decision.
+Fetch a well-structured GitHub issue and create an interactive, detailed implementation plan with clear rationale for each decision.
+
+**Note**: This command works best with issues created using `/make-task-issue`, which provides structured Context, Requirement, and Solution sections. This command focuses on breaking down the problem into actionable implementation steps, not on defining the problem itself.
 
 ## Usage
 
@@ -46,35 +48,52 @@ Extract and analyze:
 
 ### 3. Analyze Issue Content
 
-Parse the issue body to understand:
+**Expected Issue Structure:**
+Issues created with `/make-task-issue` will have the following sections:
+- **Context**: Background and why this is needed
+- **Requirement**: What needs to be done and expected outcome
+- **Solution**: Proposed approach (may be empty or brief)
+- **Test Plan**: Success criteria (may be empty or brief)
+- **Reference**: Related files or documentation
 
-**Problem/Requirement Analysis:**
-- What is the core problem or requirement?
-- Why does this need to be solved?
-- What is the expected outcome?
-- Are there any constraints or considerations?
+**Parse the issue body to extract:**
+- **Context section**: Understand the background and motivation
+- **Requirement section**: Identify what needs to be implemented
+- **Solution section**: Review any proposed approaches (if provided)
+- **Test Plan section**: Note any existing success criteria (if provided)
 
-**Context Gathering:**
-- Review related files mentioned in the issue
+**Additional Context Gathering:**
+- Review related files mentioned in the issue or Reference section
 - Check existing patterns in the codebase
 - Identify dependencies or related features
+- Use Read/Glob/Grep to explore relevant code
+
+**Note**: If the issue doesn't have this structure (e.g., older issues or manually created issues), do your best to extract similar information from whatever structure exists.
 
 ### 4. Generate Initial Plan
 
 Create a structured implementation plan with the following sections:
 
+**IMPORTANT - Separation of Concerns:**
+- The issue already contains Context, Requirement, and Solution (from `/make-task-issue`)
+- **DO NOT re-do problem definition work** - use what's already in the issue
+- **FOCUS ON** breaking down the solution into actionable implementation steps
+- Your job is to create a concrete execution plan, not to redefine the problem
+
 #### Problem Analysis
-- **What**: Clear statement of what needs to be solved
-- **Why**: Explanation of why this is important
-- **Context**: Relevant background information
+- **What**: Summarize from the issue's Requirement section (don't rewrite it)
+- **Why**: Reference the issue's Context section (don't re-analyze it)
+- **Context**: Pull from the issue's Context and Reference sections
 
 #### Solution Approach
-- **Strategy**: High-level approach to solving the problem
-- **Architecture**: Key design decisions and their rationale
+- **Strategy**: If the issue has a Solution section, elaborate on it; if not, propose one
+- **Architecture**: Key design decisions and their rationale (build on issue's Solution if provided)
 - **Alternatives Considered**: Other approaches and why they weren't chosen
 - **Trade-offs**: What we're optimizing for and what we're accepting
 
 #### Implementation Steps
+**This is the primary focus of this command.** Break down the work into concrete, actionable steps.
+
 For each step, include:
 - **Step description**: What will be done
 - **Rationale**: Why this step is necessary
@@ -83,9 +102,10 @@ For each step, include:
 - **Dependencies**: What needs to be done first
 
 #### Success Criteria
-- How will we know the implementation is complete?
-- What should be tested?
-- What documentation needs to be updated?
+- Start with what's in the issue's Test Plan section (if provided)
+- Add specific implementation verification steps
+- Include what should be tested
+- Note what documentation needs to be updated
 
 ### 5. Interactive Step-by-Step Review
 
@@ -203,10 +223,17 @@ After analyzing the issue, the command will generate a plan like:
 ## Best Practices
 
 ### Analysis
-- Read the issue thoroughly before planning
+- Read the issue thoroughly, especially Context, Requirement, and Solution sections
+- **Respect the work already done** in `/make-task-issue` - don't redo problem definition
 - Look for existing patterns in the codebase
 - Consider edge cases and error handling
 - Think about testing requirements
+
+### Separation of Concerns
+- **Problem definition** happens in `/make-task-issue` (Context, Requirement, Solution, Test Plan)
+- **Implementation planning** happens in `/plan-issue` (breaking down into steps)
+- Don't waste time re-analyzing what's already well-defined in the issue
+- Focus your energy on creating a concrete, actionable execution plan
 
 ### Communication
 - Be transparent about reasoning
@@ -225,3 +252,4 @@ After analyzing the issue, the command will generate a plan like:
 - Order steps logically with dependencies clear
 - Include both "what" and "why" for each step
 - Make success criteria measurable
+- **Primary focus**: Implementation Steps section - make it detailed and comprehensive
