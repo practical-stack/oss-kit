@@ -1,3 +1,10 @@
+---
+description: "Automatically generate draft pull requests with intelligent content analysis"
+allowed-tools:
+  - Bash(gh:*)
+  - Bash(git:*)
+---
+
 # make-pr
 
 Automatically generate draft pull requests with intelligent content analysis.
