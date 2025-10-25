@@ -48,39 +48,78 @@ The following issue templates are available in `.github/ISSUE_TEMPLATE/`:
 
 ### 2. Collect User Input (Editor-based)
 
-Create a temporary markdown file with the following template structure and open it in the user's editor:
+Create a temporary markdown file with a template structure **tailored to the issue type** and open it in the user's editor.
 
+**Template sections by type:**
+
+| Type | Section 3 | Section 4 | Notes |
+|------|-----------|-----------|-------|
+| feat, config, agent | Solution | Test Plan | Standard structure |
+| fix | Solution | Test Plan | With bug-specific guidance |
+| doc | Content Outline | Verification | Documentation-specific |
+| test | Test Scope | Verification | Test-specific |
+| perf | Solution | Verification | Performance-specific |
+| refactor | Solution | Verification | Refactoring-specific |
+
+**All types share:** Context (REQUIRED), Requirement (REQUIRED), Reference (auto-generated)
+
+**Example template for `feat`:**
 ```markdown
 # Issue Information
-
-Please fill in the required sections below. Save and close the editor when done.
 
 ## Context (REQUIRED)
 <!-- Describe the background: Why is this needed? What is the current situation? -->
 
-
 ## Requirement (REQUIRED)
 <!-- Describe what needs to be done and the expected outcome -->
-
 
 ## Solution (optional)
 <!-- If you have ideas about how to solve this, describe the approach, architecture, or design decisions -->
 
-
-## Constraints (optional)
-<!-- Any limitations, dependencies, considerations, or trade-offs to keep in mind -->
-
-
 ## Test Plan (optional)
 <!-- How should this be tested or validated? What are the success criteria? -->
+```
 
+**Example template for `doc`:**
+```markdown
+# Issue Information
+
+## Context (REQUIRED)
+<!-- Why is this documentation needed? What's missing or unclear? -->
+
+## Requirement (REQUIRED)
+<!-- What documentation needs to be created/updated? -->
+
+## Content Outline (optional)
+<!-- Document structure, sections, topics to cover -->
+
+## Verification (optional)
+<!-- How to verify documentation accuracy, examples tested, consistency checks -->
+```
+
+**Example template for `test`:**
+```markdown
+# Issue Information
+
+## Context (REQUIRED)
+<!-- Why are these tests needed? What's currently untested? -->
+
+## Requirement (REQUIRED)
+<!-- What needs to be tested? -->
+
+## Test Scope (optional)
+<!-- Test types (Unit/Integration/E2E/Performance), scope, coverage goals -->
+
+## Verification (optional)
+<!-- How to verify tests are working, coverage metrics -->
 ```
 
 **Implementation steps:**
 - Use `Write` tool to create a temporary file (e.g., `/tmp/issue-input-{timestamp}.md`)
+- **Select the appropriate template based on the issue type** (see table above)
 - Use `Bash` with `${EDITOR:-vi}` to open the file for editing
 - After user saves and closes, read the file content
-- Parse the sections from the markdown
+- Parse the sections from the markdown (section names vary by type)
 - **Validate required sections**: Check that Context and Requirement are filled (not empty or just whitespace)
 - If validation fails, inform the user which sections are missing and re-open the editor
 - Repeat until all required sections are filled
@@ -128,33 +167,102 @@ Based on the Requirement section, generate a concise, descriptive title:
 
 ### 5. Create Issue with Structured Body
 
-Generate the issue body in the standardized format:
+Generate the issue body using **type-specific section names**:
 
+**For feat, config, agent:**
 ```markdown
 ## Context
-
 {user-provided context + AI enhancements if approved}
 
 ## Requirement
-
 {user-provided requirement}
 
 ## Solution
-
 {user-provided solution + AI suggestions if approved, or empty if not provided}
 
 ## Test Plan
-
 {user-provided test plan or empty if not provided}
 
 ## Reference
-
 {auto-generated references to related files found during context gathering, or empty}
+```
+
+**For doc:**
+```markdown
+## Context
+{user-provided context + AI enhancements if approved}
+
+## Requirement
+{user-provided requirement}
+
+## Content Outline
+{user-provided content outline or empty if not provided}
+
+## Verification
+{user-provided verification plan or empty if not provided}
+
+## Reference
+{auto-generated references to related files, or empty}
+```
+
+**For test:**
+```markdown
+## Context
+{user-provided context + AI enhancements if approved}
+
+## Requirement
+{user-provided requirement}
+
+## Test Scope
+{user-provided test scope or empty if not provided}
+
+## Verification
+{user-provided verification plan or empty if not provided}
+
+## Reference
+{auto-generated references to related files, or empty}
+```
+
+**For perf, refactor:**
+```markdown
+## Context
+{user-provided context + AI enhancements if approved}
+
+## Requirement
+{user-provided requirement}
+
+## Solution
+{user-provided solution or empty if not provided}
+
+## Verification
+{user-provided verification plan or empty if not provided}
+
+## Reference
+{auto-generated references to related files, or empty}
+```
+
+**For fix:**
+```markdown
+## Context
+{user-provided context (bug description, steps to reproduce, expected vs current behavior) + AI enhancements if approved}
+
+## Requirement
+{what needs to be fixed}
+
+## Solution
+{root cause analysis and fix approach, or empty if not provided}
+
+## Test Plan
+{verification and regression testing plan, or empty if not provided}
+
+## Reference
+{auto-generated references to related files, or empty}
 ```
 
 **Create the issue:**
 - Use `gh issue create` with `--title` and `--body` flags (NOT `--template`)
 - Add appropriate label using `-l {type}` flag
+- Generate body with the appropriate section names for the type
 - Example: `gh issue create --title "{approved-title}" --body "{structured-body}" -l {type}`
 
 ### 6. Set Issue Type as "Task"
@@ -251,7 +359,12 @@ The AI might then find your design system config, suggest how to integrate with 
 - This command now uses an **editor-based input** approach instead of templates
 - The AI actively gathers context from your codebase to enhance the issue
 - Issue titles are auto-generated for consistency
-- All issues follow a standardized structure: Context, Requirement, Solution, Test Plan, Reference
+- **Type-specific sections**: Each issue type has sections optimized for its purpose
+  - feat, config, agent: Context, Requirement, Solution, Test Plan, Reference
+  - doc: Context, Requirement, Content Outline, Verification, Reference
+  - test: Context, Requirement, Test Scope, Verification, Reference
+  - perf, refactor: Context, Requirement, Solution, Verification, Reference
+  - fix: Context, Requirement, Solution, Test Plan, Reference (with bug-specific guidance)
 
 **Technical details:**
 - Uses `gh issue create` with `--title` and `--body` flags (not `--template`)

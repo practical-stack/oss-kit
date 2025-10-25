@@ -7,32 +7,20 @@ assignees: ""
 
 ---
 
-## Summary
+## Context
+<!-- Describe the bug: Steps to reproduce, Expected vs Current behavior -->
 
-A clear and concise description of what needs to be fixed.
 
-## Steps to Reproduce (if applicable)
+## Requirement
+<!-- What needs to be fixed -->
 
-1.
-2.
-3.
 
-## Expected Behavior
+## Solution
+<!-- Root cause analysis and fix approach -->
 
-## Current Behavior
 
-## Root Cause (optional)
+## Test Plan
+<!-- How to verify the fix, regression testing -->
 
-## Implementation Plan (optional)
 
-**Files to be modified:**
-
-**Approach:**
-
-## Should be tested
-
-- [ ] Fix verified locally
-- [ ] Regression testing completed
-- [ ] Edge cases covered
-
-## Reference (optional)
+## Reference

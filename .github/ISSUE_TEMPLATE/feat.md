@@ -7,22 +7,16 @@ assignees: ""
 
 ---
 
+## Context
+
+
 ## Requirement
 
-**What feature needs to be implemented:**
 
-## Implementation Plan (optional)
+## Solution
 
-**Feature scope:**
 
-**Key components:**
+## Test Plan
 
-**Files to be modified:**
 
-## Should be tested
-
-- [ ] Feature tested locally
-- [ ] Edge cases covered
-- [ ] Documentation updated (if applicable)
-
-## Reference (optional)
+## Reference

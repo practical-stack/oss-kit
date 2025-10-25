@@ -7,20 +7,20 @@ assignees: ""
 
 ---
 
+## Context
+<!-- Why is this documentation needed? What's missing or unclear? -->
+
+
 ## Requirement
+<!-- What documentation needs to be created/updated? -->
 
-## Implementation Plan (optional)
 
-**Documentation type:**
+## Content Outline
+<!-- Document structure, sections, topics to cover -->
 
-**Content outline:**
 
-**Files to be modified:**
+## Verification
+<!-- How to verify documentation accuracy, examples tested, consistency checks -->
 
-## Should be tested
-- [ ] Documentation reviewed for accuracy
-- [ ] Examples tested and working
-- [ ] Consistency with existing documentation maintained
-- [ ] References and links properly connected
 
-## Reference (optionla)
+## Reference
