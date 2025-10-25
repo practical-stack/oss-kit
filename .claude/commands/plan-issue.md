@@ -32,16 +32,16 @@ Fetch a GitHub issue and create an interactive, detailed implementation plan wit
 - If provided, proceed with fetching the issue
 
 ### 2. Fetch Issue Data
-Retrieve comprehensive issue information using GitHub CLI:
+Retrieve issue information using GitHub CLI:
 
 ```bash
-gh issue view {issue-number} --json number,title,body,labels,assignees,milestone
+gh issue view {issue-number} --json number,title,body,labels
 ```
 
 Extract and analyze:
 - Issue title and number
 - Full issue body (requirement, implementation details, etc.)
-- Labels (feat, fix, doc, agent, etc.)
+- Labels (feat, fix, doc, agent, etc.) for context on issue type
 - Any structured sections (Requirement, Implementation Plan, etc.)
 
 ### 3. Analyze Issue Content
