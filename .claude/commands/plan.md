@@ -8,16 +8,16 @@ allowed-tools:
   - Grep
 ---
 
-# Plan Issue
+# Plan Command
 
 Fetch a well-structured GitHub issue and create an interactive, detailed implementation plan with clear rationale for each decision.
 
-**Note**: This command works best with issues created using `/make-task-issue`, which provides structured Context, Requirement, and Solution sections. This command focuses on breaking down the problem into actionable implementation steps, not on defining the problem itself.
+**Note**: This command works best with issues created using `/issue-task`, which provides structured Context, Requirement, and Solution sections. This command focuses on breaking down the problem into actionable implementation steps, not on defining the problem itself.
 
 ## Usage
 
 ```
-/plan-issue <issue-number> [--no-review]
+/plan <issue-number> [--no-review]
 ```
 
 **Required argument:**
@@ -49,7 +49,7 @@ Extract and analyze:
 ### 3. Analyze Issue Content
 
 **Expected Issue Structure:**
-Issues created with `/make-task-issue` will have the following sections:
+Issues created with `/issue-task` will have the following sections:
 - **Context**: Background and why this is needed
 - **Requirement**: What needs to be done and expected outcome
 - **Solution**: Proposed approach (may be empty or brief)
@@ -75,7 +75,7 @@ Issues created with `/make-task-issue` will have the following sections:
 Create a structured implementation plan with the following sections:
 
 **IMPORTANT - Separation of Concerns:**
-- The issue already contains Context, Requirement, and Solution (from `/make-task-issue`)
+- The issue already contains Context, Requirement, and Solution (from `/issue-task`)
 - **DO NOT re-do problem definition work** - use what's already in the issue
 - **FOCUS ON** breaking down the solution into actionable implementation steps
 - Your job is to create a concrete execution plan, not to redefine the problem
@@ -166,7 +166,7 @@ Once the user approves the plan:
 ### Basic Usage (with interactive review)
 
 ```bash
-/plan-issue 13
+/plan 13
 ```
 
 This will:
@@ -180,7 +180,7 @@ This will:
 ### Quick Mode (skip review)
 
 ```bash
-/plan-issue 13 --no-review
+/plan 13 --no-review
 ```
 
 This will:
@@ -230,8 +230,8 @@ After analyzing the issue, the command will generate a plan like:
 - Think about testing requirements
 
 ### Separation of Concerns
-- **Problem definition** happens in `/make-task-issue` (Context, Requirement, Solution, Test Plan)
-- **Implementation planning** happens in `/plan-issue` (breaking down into steps)
+- **Problem definition** happens in `/issue-task` (Context, Requirement, Solution, Test Plan)
+- **Implementation planning** happens in `/plan` (breaking down into steps)
 - Don't waste time re-analyzing what's already well-defined in the issue
 - Focus your energy on creating a concrete, actionable execution plan
 
