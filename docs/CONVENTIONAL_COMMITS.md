@@ -449,7 +449,7 @@ We acknowledge the following gaps and areas for future improvement:
 
 The following custom commands automatically enforce these conventions:
 
-### `/make-commit`
+### `/commit`
 
 **Purpose**: Analyze git changes and create well-structured commits
 
@@ -458,9 +458,9 @@ The following custom commands automatically enforce these conventions:
 - Generates commit messages with "Requirement" and "Implementation" sections
 - Groups files by intent to ensure logical commits
 
-**Reference**: [.claude/commands/make-commit.md](.claude/commands/make-commit.md)
+**Reference**: [.claude/commands/commit.md](.claude/commands/commit.md)
 
-### `/make-branch`
+### `/branch`
 
 **Purpose**: Generate consistent branch names from GitHub issue information
 
@@ -469,9 +469,9 @@ The following custom commands automatically enforce these conventions:
 - Creates branch names in format: `i{issue-number}-{type}/{description}`
 - Ensures branch names align with eventual commits
 
-**Reference**: [.claude/commands/make-branch.md](.claude/commands/make-branch.md)
+**Reference**: [.claude/commands/branch.md](.claude/commands/branch.md)
 
-### `/make-pr`
+### `/pr`
 
 **Purpose**: Automatically generate draft pull requests
 
@@ -480,7 +480,7 @@ The following custom commands automatically enforce these conventions:
 - Generates PR titles with correct type prefixes
 - Creates structured PR descriptions based on commit analysis
 
-**Reference**: [.claude/commands/make-pr.md](.claude/commands/make-pr.md)
+**Reference**: [.claude/commands/pr.md](.claude/commands/pr.md)
 
 ---
 
