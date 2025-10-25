@@ -43,7 +43,7 @@
 - **Modern tooling**: 최신 GitHub 기능과 도구로 지속적으로 업데이트
 - **필수 자산 포함**: Issue Template, PR Template, Code of Conduct, Contribution Guide, Branch Rule 제공
 - **GitHub Projects 통합**: GitHub Projects 워크플로우와 함께 작동하도록 설계
-- **Custom Commit Convention**: 이 템플릿에 맞춤화된 Conventional Commits의 수정 버전 사용
+- **Custom Commit Convention**: 이 템플릿에 맞춤화된 Conventional Commits의 수정 버전 사용. 자세한 내용은 [Conventional Commits 가이드](docs/CONVENTIONAL_COMMITS.ko.md)를 참고하세요.
 
 ---
 
@@ -57,6 +57,7 @@
 - **LICENSE**: 라이선스 정보
 - **agents.md**: 프로젝트 역할과 책임 정의
 - **docs/**
+  - **CONVENTIONAL_COMMITS.md**: 커밋 컨벤션에 대한 포괄적인 가이드
   - **project-board.md**: GitHub Projects 워크플로우 가이드
 - **.github/**
   - **ISSUE_TEMPLATE/**: GitHub Issue 템플릿
