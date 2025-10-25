@@ -8,19 +8,19 @@ allowed-tools:
   - Grep
 ---
 
-# Make Task Issue
+# Issue Task Command
 
 Create a new GitHub issue with comprehensive context gathering, requirement analysis, and solution design. This command guides you through a structured input process and enhances your input with AI-powered codebase analysis.
 
 ## Usage
 
 ```
-/make-task-issue [template-type]
+/issue-task [template-type]
 ```
 
 Or simply:
 ```
-/make-task-issue
+/issue-task
 ```
 
 **Note**: This command no longer accepts issue title as an argument. The title will be auto-generated based on your requirement input.
@@ -297,7 +297,7 @@ Add the issue to the repository's linked GitHub Project:
 
 ### Example 1: With template type specified
 ```bash
-/make-task-issue feat
+/issue-task feat
 ```
 
 This will:
@@ -311,7 +311,7 @@ This will:
 
 ### Example 2: Fully interactive
 ```bash
-/make-task-issue
+/issue-task
 ```
 
 This will:
@@ -371,10 +371,10 @@ The AI might then find your design system config, suggest how to integrate with 
   * Uses `gh project item-add` to add issues to projects
   * Gracefully handles cases where no project is linked
 
-**Relationship with `/plan-issue`:**
-- `/make-task-issue` focuses on **problem definition**: gathering context, defining requirements, designing solutions
-- `/plan-issue` focuses on **implementation planning**: breaking down well-defined issues into actionable steps
-- Issues created with `/make-task-issue` are well-suited for `/plan-issue` to process
+**Relationship with `/plan`:**
+- `/issue-task` focuses on **problem definition**: gathering context, defining requirements, designing solutions
+- `/plan` focuses on **implementation planning**: breaking down well-defined issues into actionable steps
+- Issues created with `/issue-task` are well-suited for `/plan` to process
 
 ## Error Handling
 
